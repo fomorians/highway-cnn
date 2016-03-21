@@ -113,7 +113,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     if not FLAGS.skip_training:
         summary_writer = tf.train.SummaryWriter(summary_path, sess.graph_def)
 
-        num_steps = 20000
+        num_steps = 5000
         checkpoint_interval = 100
         batch_size = 50
 
