@@ -1,0 +1,4 @@
+name = "highway"
+repo = "https://github.com/fomorians/highway-networks.git"
+description = "Highway networks with TensorFlow"
+environment = "tensorflow"
