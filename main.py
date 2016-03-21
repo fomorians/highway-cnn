@@ -20,7 +20,7 @@ summary_path = os.environ.get('SUMMARY_PATH', 'logs/')
 mnist = input_data.read_data_sets('mnist', one_hot=True)
 
 def weight_bias(W_shape, b_shape, bias_init=0.1):
-    W = tf.Variable(tf.truncated_normal(W_shape, stddev=0.1))
+    W = tf.Variable(tf.truncated_normal(W_shape, stddev=0.1), name='weight')
     b = tf.Variable(tf.constant(bias_init, shape=b_shape), name='bias')
     return W, b
 
@@ -84,6 +84,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     # define training and accuracy operations
     with tf.name_scope("loss") as scope:
         loss = -tf.reduce_sum(y_ * tf.log(y))
+        tf.scalar_summary("loss", loss)
 
     with tf.name_scope("train") as scope:
         train_step = tf.train.GradientDescentOptimizer(1e-2).minimize(loss)
@@ -91,7 +92,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     with tf.name_scope("test") as scope:
         correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-        accuracy_summary = tf.scalar_summary('accuracy', accuracy)
+        tf.scalar_summary('accuracy', accuracy)
 
     merged_summaries = tf.merge_all_summaries()
 
@@ -102,7 +103,7 @@ with tf.Graph().as_default(), tf.Session() as sess:
     sess.run(tf.initialize_all_variables())
 
     # save the graph definition as a protobuf file
-    tf.train.write_graph(sess.graph_def, model_path, 'convnet.pb', as_text=False)
+    tf.train.write_graph(sess.graph_def, model_path, 'highway.pb', as_text=False)
 
     # restore variables
     if FLAGS.restore:
