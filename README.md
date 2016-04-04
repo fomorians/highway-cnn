@@ -10,9 +10,8 @@ Check out the [blog post](https://medium.com/jim-fleming/highway-networks-with-t
 
 1. Follow the [installation guide](https://fomoro.gitbooks.io/guide/content/installation.html) for Fomoro.
 2. Clone the repo: `git clone https://github.com/fomorians/highway-cnn.git && cd highway-cnn`
-3. Create a new model: `fomoro model create`
-4. Start training: `fomoro session start`
-5. Follow the logs: `fomoro session logs -f`
+3. Create a new model: `fomoro model add`
+4. Start training: `fomoro session start -f`
 
 ### Local Setup
 
