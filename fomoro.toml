@@ -1,4 +1,0 @@
-name = "highway-cnn"
-repo = "https://github.com/fomorians/highway-cnn.git"
-description = "Convolutional highway networks with TensorFlow"
-environment = "tensorflow"
